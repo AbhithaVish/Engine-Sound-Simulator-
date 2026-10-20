@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101512">
+  <title>MN82 Diesel Sound Simulator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header>
+      <p class="eyebrow">MN82 • RC LAND CRUISER</p>
+      <h1>Diesel Sound<br><span>Simulator</span></h1>
+      <p class="subtitle">Motion-responsive engine audio for your Redmi Note 12.</p>
+    </header>
+
+    <section class="tach-card">
+      <div class="topline"><span class="dot" id="statusDot"></span><span id="statusText">ENGINE OFF</span><span class="pill" id="motionStatus">SENSOR NOT STARTED</span></div>
+      <div class="dial">
+        <div class="dial-inner">
+          <div class="rpm-number" id="rpm">0</div>
+          <div class="rpm-label">VIRTUAL RPM</div>
+          <div class="rpm-band" id="rpmBand">OFF</div>
+        </div>
+      </div>
+      <div class="meter"><div id="meterFill"></div></div>
+      <div class="stats"><div><span class="stat-label">MOTION</span><strong id="motionValue">0.00</strong></div><div><span class="stat-label">SOUND LAYER</span><strong id="layerName">None</strong></div><div><span class="stat-label">OUTPUT</span><strong>PHONE</strong></div></div>
+    </section>
+
+    <section class="controls">
+      <button class="start" id="startBtn">⏻ START ENGINE</button>
+      <button class="stop" id="stopBtn" disabled>STOP ENGINE</button>
+      <button class="secondary" id="sensorBtn">Enable motion sensor</button>
+      <label class="sensitivity">Motion sensitivity <strong id="sensitivityLabel">Medium</strong>
+        <input id="sensitivity" type="range" min="1" max="10" value="5">
+      </label>
+      <label class="sensitivity">Master volume <strong id="volumeLabel">80%</strong>
+        <input id="volume" type="range" min="0" max="100" value="80">
+      </label>
+    </section>
+
+    <section class="sound-files">
+      <h2>Load real diesel recordings</h2>
+      <p class="hint">Choose your own audio files. For best results, use recordings of the same diesel engine: steady idle and continuous low/mid/high rev loops. WAV or MP3 works.</p>
+      <div class="file-row"><label>Idle loop <input type="file" id="idleFile" accept="audio/*"></label><audio id="idleAudio" preload="auto" loop></audio></div>
+      <div class="file-row"><label>Low RPM loop <input type="file" id="lowFile" accept="audio/*"></label><audio id="lowAudio" preload="auto" loop></audio></div>
+      <div class="file-row"><label>Mid RPM loop <input type="file" id="midFile" accept="audio/*"></label><audio id="midAudio" preload="auto" loop></audio></div>
+      <div class="file-row"><label>High RPM loop <input type="file" id="highFile" accept="audio/*"></label><audio id="highAudio" preload="auto" loop></audio></div>
+      <div class="file-row"><label>Start / shutdown sound (optional) <input type="file" id="startFile" accept="audio/*"></label><audio id="startAudio" preload="auto"></audio></div>
+      <p class="hint small">Selected files stay in this open browser tab; they are not uploaded to a server.</p>
+    </section>
+
+    <section class="notes">
+      <h2>Mounting & testing</h2>
+      <ul>
+        <li>Secure the phone firmly to the chassis; loose mounting creates false movement readings.</li>
+        <li>Start the engine with the button, then move the RC slowly to test response.</li>
+        <li>Keep the phone speaker openings clear. Try airplane mode to avoid interruptions.</li>
+        <li>This prototype estimates virtual RPM from motion changes. Phone sensors cannot measure true wheel speed, and a steady constant speed may not produce acceleration readings.</li>
+      </ul>
+    </section>
+    <footer>Prototype • Use only when the RC is safely supported or in a clear test area.</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
